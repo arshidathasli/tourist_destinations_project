@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Destination</title>
+    <!-- Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Remove Destination</h2>
+    <p>Are you sure you want to remove the following destination?</p>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">{{ destination.place_name }}</h4>
+            <p><strong>Weather:</strong> {{ destination.weather }}</p>
+            <p><strong>Location:</strong> {{ destination.location_state }}, {{ destination.location_district }}</p>
+            <p><strong>Description:</strong> {{ destination.description }}</p>
+        </div>
+    </div>
+    <form method="post" action="">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger mt-3">Yes, Remove</button>
+        <a href="{% url 'destination_list' %}" class="btn btn-secondary mt-3">Cancel</a>
+    </form>
+</div>
+
+<!-- Bootstrap JS and dependencies from CDN -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Destinations</title>
+    <!-- Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Search Destinations</h2>
+    <form method="get" action="{% url 'search' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search destinations..." value="{{ request.GET.q }}">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    {% if tours %}
+        <h3>Search Results:</h3>
+        <ul class="list-group">
+            {% for tour in tours %}
+                <li class="list-group-item">
+                    <h4>{{ tour.place_name }}</h4>
+                    <p><strong>Weather:</strong> {{ tour.weather }}</p>
+                    <p><strong>Location:</strong> {{ tour.location_state }}, {{ tour.location_district }}</p>
+                    <p><strong>Description:</strong> {{ tour.description }}</p>
+                    <a href="{{ tour.google_map_link }}" target="_blank">View on Google Maps</a>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No destinations found.</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No search results. Please enter a query above.</p>
+    {% endif %}
+</div>
+
+<!-- Bootstrap JS and dependencies from CDN -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
